@@ -1,0 +1,12 @@
+train: ../train/images
+val: ../valid/images
+
+nc: 1
+names: ['Players']
+
+roboflow:
+  workspace: ai-vvjk9
+  project: ai-tracker
+  version: 2
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/ai-vvjk9/ai-tracker/dataset/2
