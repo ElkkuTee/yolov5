@@ -1,0 +1,71 @@
+# YOLOv5 small model configuration
+# Parameters are based on the YOLOv5s architecture
+
+model:
+  # YOLOv5 architecture
+  # Refer to the YOLOv5 documentation for detailed explanations of these parameters
+  # https://github.com/ultralytics/yolov5/wiki/Train-Custom-Data
+  depth_multiple: 0.33  # model depth multiple
+  width_multiple: 0.50  # layer channel multiple
+
+  # Backbone
+  backbone:
+    # Number of convolutional layers
+    # [256, 512, 1024, 2048, 4096] corresponds to S, M, L, X, Xn, Xn_en
+    num_channels: [128, 256, 512, 1024, 2048]
+    # Layer scale factors
+    scales: [1.0, 0.1, 0.2]
+
+  # Neck
+  neck:
+    # Number of convolutional layers
+    num_channels: [256, 512, 1024]
+
+  # Head
+  head:
+    # Number of convolutional layers
+    num_channels: [256, 512, 1024]
+
+# YOLO layer parameters
+yolo:
+  # Number of anchor boxes per feature map grid
+  n_anchors: 3
+  # Number of classes
+  n_classes: 1
+  # Anchor boxes
+  anchors: [[10,13, 16,30, 33,23], [30,61, 62,45, 59,119], [116,90, 156,198, 373,326]]
+  # Anchor masks
+  # List of lists of indices in [0, 1, 2] specifying which anchor boxes to use for each scale
+  # Example: [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
+  masks:
+    - [3, 4, 5]
+
+# Training parameters
+train:
+  # Number of images per batch
+  batch_size: 16
+  # Number of epochs
+  epochs: 50
+  # Learning rate schedule
+  lr0: 0.01  # Initial learning rate
+  lrf: 0.1  # Final learning rate
+  # Burn-in period
+  warmup_epochs: 3
+  # Learning rate schedule
+  cosine_lr: true
+
+# Input image parameters
+img_size:
+  # Image width and height
+  - 640  # Adjust according to your dataset's image size
+  - 640
+
+# Data augmentation
+# Refer to the YOLOv5 documentation for available augmentation techniques
+# https://github.com/ultralytics/yolov5/wiki/Train-Custom-Data
+augment: true
+
+# Classes
+# List of class names
+# Example: ['person', 'car', 'truck', ...]
+names: ['Players']
